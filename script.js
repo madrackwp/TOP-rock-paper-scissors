@@ -8,6 +8,9 @@ const rockBtn = document.querySelector('.rock-btn');
 const paperBtn = document.querySelector('.paper-btn');
 const scissorsBtn = document.querySelector('.scissors-btn');
 const startGameBtn = document.querySelector(".start-game > button")
+const infoText = document.querySelector(".infoText");
+
+
 startGameBtn.addEventListener('click', ()=>{
   const playerScore = document.querySelector(".playerScore");
   playerScore.textContent = "0";
@@ -15,8 +18,9 @@ startGameBtn.addEventListener('click', ()=>{
   computerScore.textContent = "0";
   buttonContainer.classList.remove('no-display');
   startGameBtn.classList.add('no-display');
+  infoText.textContent = "Game Begins! First to 5 wins! Chose ROCK, PAPER or SCISSORS"
 })
-const infoText = document.querySelector('.infoText');
+
 var userInput = false;
 let userChoice;
 let toWin = 5;
@@ -48,55 +52,58 @@ function checkWinCondition(toWin){
 function buttonPress(event){
   const playerScore = document.querySelector(".playerScore");
   const computerScore = document.querySelector(".computerScore");
-  let playerChoice;
-  switch(event.target.textContent){
-    case ("ROCK"):
-      playerChoice=1;
-      break;
-    case ("PAPER"):
-      playerChoice = 2;
-      break;
-    case ("SCISSORS"):
-      playerChoice = 3;
-      break;
-
-  }
-  let result = round(playerChoice);
+  let playerChoiceString = event.target.textContent
+  let playerChoice = wordToInt(playerChoiceString);
+  let computerChoiceString = computerPlay()
+  let computerChoice = wordToInt(computerChoiceString);
+  let result = round(playerChoice, computerChoice);
 
   console.log(result)
   switch (result){
     case 1:
       playerScore.textContent++;
-      console.log(playerScore);
+      // console.log(playerScore);
+      infoText.textContent = `Computer Chose ${computerChoiceString}. ${playerChoiceString} beats ${computerChoiceString}! Player wins this round!`;
       checkWinCondition(5);
       break;
     case -1:
       computerScore.textContent++;
-      console.log(computerScore);
+      // console.log(computerScore);
+      infoText.textContent = `Computer Chose ${computerChoiceString}. ${playerChoiceString} loses to ${computerChoiceString}! Computer wins this round!`;
       checkWinCondition(5);
       break;
     case 0: 
+      infoText.textContent= `Computer also chose ${playerChoiceString}. Draw!`;
       break;
   }
 
 }
 
+function wordToInt(string){
+  switch(string){
+    case "ROCK":
+      return 1;
+    case "PAPER":
+      return 2;
+    case "SCISSORS":
+      return 3;
+  }
+}
 
 function computerPlay(){
-  computerChoice = Math.floor(Math.random()* 3) + 1;
+  let computerChoice = Math.floor(Math.random()* 3) + 1;
   // console.log(randomNum)
   switch (computerChoice){
     case 1: 
       console.log("Computer chose ROCK");
-      break;
+      return "ROCK"
     case 2:
       console.log("Computer chose PAPER");
-      break;
+      return "PAPER"
     case 3:
       console.log("Computer chose SCISSORS");
-      break;
+      return "SCISSORS"
   }
-  return computerChoice;
 }
 
 
@@ -117,8 +124,8 @@ function winLose(playerChoice, computerChoice){
   }
 }
 
-function round(playerChoice){
-  computerChoice = computerPlay();
+function round(playerChoice, computerChoice){
+  
   while (true){
     if (playerChoice != -1){
       break;
@@ -142,17 +149,6 @@ function round(playerChoice){
 
 }
 
-// function game(){
-//   let toWin = 5;
-//   let result = 0;
-//   while (result < toWin){
-//     let win = round();
-//     if (win == 1){
-//       result++;
-//     }
-//   }
-
-// }
 
 
 
