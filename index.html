@@ -2,9 +2,29 @@
 <html lang="en">
   <head>
     <title>Document</title>
+    <link rel="stylesheet" href = "style.css">
   </head>
   <body>
-    <div>Hello world</div>
+    <h1>ROCK PAPER SCISSORS</h1>
+    <div class = 'scoreboard'>
+      <div class='score-container'>
+        <h2>Player</h2>
+        <p class = 'playerScore'>0</p>
+      </div>
+      <div class ='score-container'>
+        <h2>Computer</h2>
+        <p class = 'computerScore'>0</p>
+      </div>
+    </div>
+    <div><h3 class="infoText"></h3></div>
+    <div class="button-container no-display">
+      <button class='rock-btn'>ROCK</button>
+      <button class="paper-btn">PAPER</button>
+      <button class='scissors-btn'>SCISSORS</button>
+    </div>
+    <div class="start-game">
+      <button>START</button>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>

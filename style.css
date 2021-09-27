@@ -1,0 +1,32 @@
+.scoreboard {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.no-display{
+  display: none !important;
+}
+
+.score-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  
+}
+
+button{
+  color: #ffcc23;
+  background-color: rgb(48, 58, 148);
+  border: 0;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
+}
